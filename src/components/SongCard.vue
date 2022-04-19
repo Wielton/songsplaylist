@@ -1,37 +1,45 @@
 <template>
     <div>
-        <img :src="image" alt="">
-        <h4>{{ name }}</h4>
-        <h2>{{ trackTitle }}</h2> 
-        <generic-button :key="name" :name="name"/>
+        
+                <img :src="image" alt="">
+                <h4>{{ name }}</h4>
+                <h2>{{ trackTitle }}</h2> 
+                <button @click="buttonClicked">{{buttonFunction}}</button>
+            
     </div>
 </template>
 
 <script>
-import GenericButton from "./GenericButton.vue";
+
 
 
     export default {
         
         name: 'SongCard',
         components: {
-                'generic-button': GenericButton
+                
         },
         props: {
-            name: String,
-            trackTitle: String,
-            image: String,
-            buttonFunction: {
-                type: String,
-                default: 'Add Song'
-            },
-            },
+                name: String,
+                trackTitle: String,
+                image: String,
+                isSaved: Boolean,
+                buttonClicked: Function,
+                buttonFunction: {
+                    type: String,
+                    default: 'Click',
+                    
+                }
+        },
             data(){
                 return{
 
                 }
             },
+            methods: {
+                
             
+    }   
             
             }
 

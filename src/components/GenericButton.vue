@@ -1,7 +1,7 @@
 <template>
     
-        <button @click="buttonClicked">
-    {{buttonFunction}}
+        <button>
+    
     </button>
     
 </template>
@@ -11,8 +11,8 @@
         name: 'GenericButton',
         
         props: {
-            buttonFunction: String,
-            name: String
+            name: String,
+            
             
         },
         data() {
@@ -20,12 +20,13 @@
         },
         methods: {
             buttonClicked() {
-                this.$emit('button-clicked')
+                this.$emit('buttonClicked', this.name);
+                console.log('You clicked the button');
             }
         }
     }
 </script>
 
 <style scoped>
-
+    
 </style>

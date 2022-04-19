@@ -5,7 +5,9 @@
             <li>
                 <SongCard v-for="artist in artists"
                 :key="artist.name"
-                v-bind="artist"/>
+                v-bind="artist"
+                :click="buttonClicked"
+                :buttonFunction="buttonFunction"/>
                 
             </li>
         </ul>
@@ -19,15 +21,21 @@ import SongCard from './SongCard.vue'
 
     export default {
         name: 'SongList',
-        
+        props: {
+                buttonFunction: {
+                    type: String,
+                    default: 'Add Song'
+                },
+                name: String,
+                trackTitle: String,
+                image: String
+            },
         components: {
                 SongCard,
             },
-        data(){
-            return {
-                isAdded: false,
-                buttonFunction: 'Add Song',
-                artists : [
+            data(){
+        return {
+            artists : [
                     {
                         name: "Lord Finesse",
                         trackTitle: "Keep The Crowd Listening",
@@ -78,16 +86,20 @@ import SongCard from './SongCard.vue'
                         trackTitle: "Skinny Dip (Got It Goin' Down)",
                         image: "https://i.discogs.com/AXq7W48tJ8jdvudcYc2YuldGeldZIqpfK0_XwsTG6xg/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUxMzA3/OS0xNDc2MTk0NjE4/LTQ5MTYuanBlZw.jpeg",
                     },
-            ],
-            
+                ],
             }
-            
-    },
-    methods: {
-        addSong(buttonClicked){
-            console.log(buttonClicked);
+        },
+        methods: {
+            addSong(artist){
+                    this.$emit(this.artist);
+
+            console.log(`${{artist}} added`);
+            },
+            buttonClicked(name){
+            this.$root.$emit('buttonClicked', this.artist.name);
+            console.log(`This is ${{name}}'s song card button`);
         }
-    }
+        }  
 
 
     }
